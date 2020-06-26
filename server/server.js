@@ -5,13 +5,13 @@ const port = 5000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// require('./routes')(app);
+require('./routes')(app);
 
 app.get('/', (req, res) => {
-	res.send({ message: 'PORT 5000' });
+	res.send({ message: `Connected to Port ${port}` });
 })
 
 app.listen(port, (err) => {
 	if (err) { console.log(err) }
-	console.log(`Listening on port ${port}`)
+	console.log(`Listening on Port ${port}`)
 })

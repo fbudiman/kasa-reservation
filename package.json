@@ -18,5 +18,13 @@
   "homepage": "https://github.com/fbudiman/kasa-reservation#readme",
   "dependencies": {
     "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "module-alias": "2.0.6"
+  },
+  "_moduleAliases": {
+    "root": ".",
+    "routes": "./server/routes",
+    "server": "./server"
   }
 }
