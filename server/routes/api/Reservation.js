@@ -39,10 +39,6 @@ module.exports = (app) => {
             keywordsUpperCase === confirmationCode || city.toLocaleUpperCase().includes(keywordsUpperCase)
         ));
 
-        if (!result.length) {
-            res.status(404).send('Reservation not found.');
-        } else {
-            res.send({ data: result });
-        }
+        res.send({ data: result });
     });
 };

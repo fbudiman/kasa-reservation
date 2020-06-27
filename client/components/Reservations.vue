@@ -5,21 +5,30 @@
       <p>You can search by providing the city or the confirmation code of your reservation.</p>
       <div class="Reservations__search-container">
         <input
-          v-model="searchQuery"
+          v-model="keywords"
+          v-on:keyup.enter="fetchReservations"
           type="search"
           placeholder="Search by keywords"
         >
-        <!-- <div v-if="reservations.length" class="Reservations__search-results">
+        <div v-if="reservations && reservations.length" class="Reservations__search-results">
           <nuxt-link
             v-for="reservation of reservations"
             :key="reservation.confirmationCode"
             :to="`/${reservation.confirmationCode}`"
           >
-            <div>
+            <div class="__location">
               {{ reservation.city }}
             </div>
+            <div class="__details">
+              <span>{{ $moment(reservation.checkInDate).format('MMMM D YYYY') }} - </span>
+              <span>{{ $moment(reservation.checkOutDate).format('MMMM D YYYY') }},</span>
+              <span>#{{ reservation.confirmationCode }}</span>
+            </div>
           </nuxt-link>
-        </div> -->
+        </div>
+        <div v-if="noResults" class="Reservations__search-results --empty">
+          <div>Your search did not match any reservations.</div>
+        </div>
         <button @click="fetchReservations">
           Search
         </button>
@@ -30,21 +39,25 @@
 </template>
 
 <script>
-import axios from 'axios'
-
 export default {
   data () {
     return {
       reservations: [],
-      searchQuery: ''
+      keywords: '',
+      noResults: false
     }
   },
   methods: {
-    fetchReservations () {
-      axios.get(`http://localhost:5000/search?keywords=${this.searchQuery}`)
-        .then(({ data }) => {
-          this.reservations = data.data
-        })
+    async fetchReservations () {
+      if (this.keywords) {
+        try {
+          const reservations = await this.$axios.$get(`/search?keywords=${this.keywords}`)
+          this.reservations = reservations.data
+          this.noResults = this.reservations.length === 0
+        } catch {
+          this.reservations = []
+        }
+      }
     }
   },
   fetchOnServer: false
@@ -65,7 +78,7 @@ export default {
   max-width: 24rem;
   background: #FAFAFA;
   color: #2D2D2D;
-  left: 5rem;
+  left: 4rem;
   padding: 2rem 2.5rem;
   color: #111111;
 }
@@ -74,19 +87,50 @@ export default {
   text-align: center;
 }
 
+.Reservations__search-results {
+  background-color: white;
+  width: 95%;
+  border-radius: 4px;
+  margin: 0 auto 0.4rem;
+  text-align: left;
+  font-family: Arial;
+  font-size: 0.8rem;
+}
+
+.Reservations__search-results a {
+  text-decoration: none;
+  color: #303030;
+}
+
+.Reservations__search-results a:not(:first-child) {
+  display: block;
+  margin-top: 1rem;
+}
+
+.__location {
+  margin-bottom: 0.3rem;
+}
+
+.__details {
+  color: #969696;
+  font-size: 0.7rem;
+}
+
 input, button {
   width: 95%;
   height: 2.5rem;
   border-radius: 4px;
 }
 
-input {
-  padding: 0.25rem 0.65rem;
+input,
+.Reservations__search-results {
+  padding: 0.65rem;
   border: 1px solid #d3d3d3;
   margin-bottom: 0.4rem;
 }
 
-input:focus {
+input:focus,
+button:focus {
   outline: none;
 }
 

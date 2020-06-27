@@ -46,7 +46,8 @@ export default {
   */
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
-    '@nuxtjs/eslint-module'
+    '@nuxtjs/eslint-module',
+    '@nuxtjs/moment'
   ],
   /*
   ** Nuxt.js modules
@@ -59,7 +60,9 @@ export default {
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
   */
-  axios: {},
+  axios: {
+    baseURL: 'http://localhost:5000'
+  },
   /*
   ** Build configuration
   ** See https://nuxtjs.org/api/configuration-build/
