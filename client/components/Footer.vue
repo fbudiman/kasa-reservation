@@ -9,7 +9,7 @@
 <style>
 footer {
   display: flex;
-  padding: 1rem 3rem 5rem;
+  padding: 1rem 4rem 5rem;
   background: #F2F2F2;
 }
 

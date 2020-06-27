@@ -1,9 +1,13 @@
 <template>
   <header>
     <h3>kasa</h3>
-    <nav class="navigation">
+    <nav class="Navigation">
       <ul>
-        <li><nuxt-link to="/">Your Reservations</nuxt-link></li>
+        <li>
+          <nuxt-link to="/">
+            Your Reservations
+          </nuxt-link>
+        </li>
         <li>FAQ</li>
         <li>Contact</li>
         <li>Guest Portal</li>
@@ -16,7 +20,7 @@
 header {
   display: flex;
   justify-content: space-between;
-  padding: 1rem 3rem;
+  padding: 1rem 4rem;
 }
 
 h3 {
