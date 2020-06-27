@@ -15,6 +15,7 @@
             v-for="reservation of reservations"
             :key="reservation.confirmationCode"
             :to="`/${reservation.confirmationCode}`"
+            class="__search-result"
           >
             <div class="__location">
               {{ reservation.city }}
@@ -49,9 +50,9 @@ export default {
   },
   methods: {
     async fetchReservations () {
-      if (this.keywords) {
+      if (this.keywords.trim().length) {
         try {
-          const reservations = await this.$axios.$get(`/search?keywords=${this.keywords}`)
+          const reservations = await this.$axios.$get(`/search?keywords=${this.keywords.trim()}`)
           this.reservations = reservations.data
           this.noResults = this.reservations.length === 0
         } catch {
@@ -100,11 +101,12 @@ export default {
 .Reservations__search-results a {
   text-decoration: none;
   color: #303030;
+  display: block;
+  padding: 0.5rem;
 }
 
-.Reservations__search-results a:not(:first-child) {
-  display: block;
-  margin-top: 1rem;
+.__search-result:hover {
+  background: #f2f2f2;
 }
 
 .__location {
@@ -123,8 +125,12 @@ input, button {
 }
 
 input,
-.Reservations__search-results {
+.Reservations__search-results.--empty {
   padding: 0.65rem;
+}
+
+input,
+.Reservations__search-results {
   border: 1px solid #d3d3d3;
   margin-bottom: 0.4rem;
 }
@@ -159,7 +165,7 @@ p {
 }
 
 img {
-  max-width: 85%;
+  width: 85%;
   z-index: 0;
 }
 </style>
