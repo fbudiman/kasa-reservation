@@ -17,7 +17,8 @@
   },
   "homepage": "https://github.com/fbudiman/kasa-reservation#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "cors": "^2.8.5"
   },
   "devDependencies": {
     "module-alias": "2.0.6"

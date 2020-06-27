@@ -27,6 +27,5 @@
     "eslint-plugin-nuxt": "^1.0.0",
     "jest": "^26.0.1",
     "vue-jest": "^3.0.4"
-  },
-  "proxy": "http://localhost:5000/"
+  }
 }

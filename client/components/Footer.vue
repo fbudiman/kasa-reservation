@@ -6,7 +6,7 @@
   </footer>
 </template>
 
-<style>
+<style scoped>
 footer {
   display: flex;
   padding: 1rem 4rem 5rem;

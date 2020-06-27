@@ -16,7 +16,7 @@
   </header>
 </template>
 
-<style>
+<style scoped>
 header {
   display: flex;
   justify-content: space-between;

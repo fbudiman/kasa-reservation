@@ -4,8 +4,25 @@
       <h1>Find your reservation</h1>
       <p>You can search by providing the city or the confirmation code of your reservation.</p>
       <div class="Reservations__search-container">
-        <input placeholder="Search by keywords">
-        <button>Search</button>
+        <input
+          v-model="searchQuery"
+          type="search"
+          placeholder="Search by keywords"
+        >
+        <!-- <div v-if="reservations.length" class="Reservations__search-results">
+          <nuxt-link
+            v-for="reservation of reservations"
+            :key="reservation.confirmationCode"
+            :to="`/${reservation.confirmationCode}`"
+          >
+            <div>
+              {{ reservation.city }}
+            </div>
+          </nuxt-link>
+        </div> -->
+        <button @click="fetchReservations">
+          Search
+        </button>
       </div>
     </div>
     <img src="~/assets/kasa-room.jpg">
@@ -13,7 +30,25 @@
 </template>
 
 <script>
-export default {}
+import axios from 'axios'
+
+export default {
+  data () {
+    return {
+      reservations: [],
+      searchQuery: ''
+    }
+  },
+  methods: {
+    fetchReservations () {
+      axios.get(`http://localhost:5000/search?keywords=${this.searchQuery}`)
+        .then(({ data }) => {
+          this.reservations = data.data
+        })
+    }
+  },
+  fetchOnServer: false
+}
 </script>
 
 <style>
