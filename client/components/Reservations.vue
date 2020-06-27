@@ -64,7 +64,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .Reservations {
   padding: 2rem 5rem;
   display: flex;
