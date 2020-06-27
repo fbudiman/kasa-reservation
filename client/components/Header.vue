@@ -1,6 +1,6 @@
 <template>
   <header>
-    <h4>KASA</h4>
+    <h3>kasa</h3>
     <nav class="navigation">
       <ul>
         <li><nuxt-link to="/">Your Reservations</nuxt-link></li>
@@ -19,7 +19,7 @@ header {
   padding: 1rem 3rem;
 }
 
-h4 {
+h3 {
   color: #2F2B8D;
 }
 
@@ -33,17 +33,16 @@ li {
   padding-bottom: 2px;
   cursor: pointer;
   color: #303030;
-  font-weight: 500;
   transition: border 0.3s ease;
   border-bottom: 2px solid white;
 }
 
 li:hover {
-  border-color: black;
+  border-color: #303030;
 }
 
 a {
   text-decoration: none;
-  color: black;
+  color: #303030;
 }
 </style>
