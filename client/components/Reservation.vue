@@ -27,7 +27,7 @@
             <p>
               <span>{{ $moment(reservation.checkInDate).format('MMMM D YYYY') }} -</span>
               <span>{{ $moment(reservation.checkOutDate).format('MMMM D YYYY') }}</span>
-              <span>___ days</span>
+              <span>({{ $moment(reservation.checkOutDate).diff($moment(reservation.checkInDate), 'days') }} nights)</span>
             </p>
           </div>
           <div class="__detail">
