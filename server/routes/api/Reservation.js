@@ -31,19 +31,15 @@ module.exports = (app) => {
         res.send({ reservations });
     });
 
-    // search for reservation using keywords or confirmationCode
+    // search for reservation using keywords (either location or confirmation code)
     app.get('/search', (req, res) => {
-        const { keywords, confirmationCode } = req.query;
-        let result;
+        const { keywords } = req.query;
+        const keywordsUpperCase = keywords.toLocaleUpperCase();
+        const result = reservations.filter(({ confirmationCode, city }) => (
+            keywordsUpperCase === confirmationCode || city.toLocaleUpperCase().includes(keywordsUpperCase)
+        ));
 
-        if (confirmationCode) {
-            result = reservations.find((res) => res.confirmationCode === confirmationCode.toUpperCase());
-        } else {
-            const keywordsLowerCase = keywords.toLocaleLowerCase();
-            result = reservations.filter((res) => res.city.toLocaleLowerCase().includes(keywordsLowerCase));
-        }
-
-        if (!result || (Array.isArray(result) && !result.length)) {
+        if (!result.length) {
             res.status(404).send('Reservation not found.');
         } else {
             res.send({ data: result });
