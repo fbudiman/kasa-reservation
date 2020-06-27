@@ -31,7 +31,7 @@ module.exports = (app) => {
         res.send({ reservations });
     });
 
-    // search for reservation using keywords (either location or confirmation code)
+    // search for reservation using keywords (either by location or confirmation code)
     app.get('/search', (req, res) => {
         const { keywords } = req.query;
         const keywordsUpperCase = keywords.toLocaleUpperCase();
