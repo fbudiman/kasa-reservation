@@ -8,12 +8,14 @@
     "start": "nuxt start",
     "export": "nuxt export",
     "serve": "nuxt serve",
+    "generate": "nuxt build && nuxt export",
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "lint": "npm run lint:js",
     "test": "jest"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.11.0",
+    "@nuxtjs/pwa": "^3.0.0-beta.20",
     "nuxt": "^2.13.0"
   },
   "devDependencies": {

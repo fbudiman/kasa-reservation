@@ -28,14 +28,12 @@ export default {
   /*
   ** Global CSS
   */
-  css: [
-  ],
+  css: [],
   /*
   ** Plugins to load before mounting the App
   ** https://nuxtjs.org/guide/plugins
   */
-  plugins: [
-  ],
+  plugins: [],
   /*
   ** Auto import components
   ** See https://nuxtjs.org/api/configuration-components
@@ -54,7 +52,8 @@ export default {
   */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/pwa'
   ],
   /*
   ** Axios module configuration
@@ -67,6 +66,33 @@ export default {
   ** Build configuration
   ** See https://nuxtjs.org/api/configuration-build/
   */
-  build: {
+  build: {},
+  pwa: {
+    workbox: {
+      runtimeCaching: [
+        {
+          urlPattern: 'http://localhost:5000/.*',
+          handler: 'networkFirst',
+          method: 'GET',
+          strategyOptions: {
+            cacheName: 'data-cache',
+            cacheableResponse: {
+              statuses: [0, 200]
+            }
+          }
+        },
+        {
+          urlPattern: 'https://cdn.pixabay.com/.*',
+          handler: 'networkFirst',
+          method: 'GET',
+          strategyOptions: {
+            cacheName: 'image-cache',
+            cacheableResponse: {
+              statuses: [0, 200]
+            }
+          }
+        }
+      ]
+    }
   }
 }
