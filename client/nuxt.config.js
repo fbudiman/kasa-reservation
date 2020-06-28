@@ -67,6 +67,7 @@ export default {
   ** See https://nuxtjs.org/api/configuration-build/
   */
   build: {},
+  // offline support using pwa/workbox
   pwa: {
     workbox: {
       runtimeCaching: [
