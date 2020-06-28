@@ -23,3 +23,7 @@ Given more time, here are a few things that I would implement:
 - Loading state
 - More robust error handling
 - Maintain some state when navigating between pages (ie. search results)
+
+## Comments/Feedback
+
+This was my first time working with the VueJS/NuxtJS framework, so I'd love to hear any comments and feedback regarding best practices or if there's any areas of improvement I can work on. Otherwise, it was really fun learning this new framework :)
