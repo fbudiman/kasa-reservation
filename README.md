@@ -7,7 +7,7 @@ After npm finishes installing, navigate into the `server` directory, and then ru
 
 Lastly, cd into `client` and run the following:
 
-`npm run build` then `npm run start` to run the app in production mode. Prod mode will allow for offline support. Othewise, to run the app in dev mode, run `npm run dev`.
+`npm run build` then `npm run start` to run the app in production mode. Prod mode will allow for offline support. Othewise, to run the app in dev mode, run `npm run dev`. Head over to http://localhost:3000 to start browsing the app.
 
 ## Notes
 
