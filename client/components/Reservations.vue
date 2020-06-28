@@ -4,6 +4,7 @@
       <h1>Find your reservation</h1>
       <p>You can search by providing the city or the confirmation code of your reservation.</p>
       <div class="Reservations__search-container">
+        <!-- this will allow the user to press enter to search in addition to clicking the search button -->
         <input
           v-model="keywords"
           v-on:keyup.enter="fetchReservations"
@@ -21,6 +22,7 @@
               {{ reservation.city }}
             </div>
             <div class="__details">
+              <!-- if moment formatting gets too messy, might be worth moving out implementations to plugin -->
               <span>{{ $moment(reservation.checkInDate).format('MMMM D YYYY') }} - </span>
               <span>{{ $moment(reservation.checkOutDate).format('MMMM D YYYY') }},</span>
               <span>#{{ reservation.confirmationCode }}</span>

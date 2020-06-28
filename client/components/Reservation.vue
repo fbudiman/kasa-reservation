@@ -3,6 +3,7 @@
     <p v-if="$fetchState.pending" class="Reservation__details --pending">
       Fetching reservation #{{ $route.params.id }}...
     </p>
+    <!-- error handling should be more robust for production -->
     <p v-else-if="$fetchState.error" class="Reservation__details --error">
       Error while fetching reservation #{{ $route.params.id }}.
     </p>
@@ -25,6 +26,7 @@
           <div class="__detail">
             <h5>Dates</h5>
             <p>
+              <!-- if moment formatting gets too messy, might be worth moving out implementations to plugin -->
               <span>{{ $moment(reservation.checkInDate).format('MMMM D YYYY') }} -</span>
               <span>{{ $moment(reservation.checkOutDate).format('MMMM D YYYY') }}</span>
               <span>({{ $moment(reservation.checkOutDate).diff($moment(reservation.checkInDate), 'days') }} nights)</span>
